@@ -1,0 +1,26 @@
+footer {
+    
+    position: absolute;
+    bottom: 0;
+    background-color:  #2C452C !important;
+    width: 100%;
+    color: white;
+  }
+
+  footer img{
+    width: 30%;
+    text-align: center;
+  }
+
+  footer div{
+    text-align: right;
+  }
+
+nav.navbar {
+  background-color: #86c91a;
+}
+
+.logo{
+  width: 50%;
+  height: 50%; 
+}
