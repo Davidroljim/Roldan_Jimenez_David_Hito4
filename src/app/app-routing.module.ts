@@ -9,6 +9,7 @@ import { MisIncidenciasComponent } from './component/mis-incidencias/mis-inciden
 import { AdministrarIncidenciasComponent } from './component/administrar-incidencias/administrar-incidencias.component';
 import { AdministrarUsuariosComponent } from './component/administrar-usuarios/administrar-usuarios.component';
 import { CrearIncidenciaComponent } from './component/crear-incidencia/crear-incidencia.component';
+
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'misIncidencias', component: MisIncidenciasComponent,},
   {path: 'adminInc', component: AdministrarIncidenciasComponent,},
   {path: 'adminUser', component: AdministrarUsuariosComponent,},
-  {path: 'crear', component: CrearIncidenciaComponent,}
+  {path: 'crear', component: CrearIncidenciaComponent,},
+  {path: 'registrar', component: RegistrarComponent,}
 ];
 
 @NgModule({
