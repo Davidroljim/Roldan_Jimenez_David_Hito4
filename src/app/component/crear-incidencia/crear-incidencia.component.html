@@ -2,12 +2,15 @@
     <div class="logo"> <img src="https://yt3.ggpht.com/ytc/AKedOLSvHN_I9xdV6ReqLRWnqgeP-pXF2qOm__gBD98h=s176-c-k-c0x00ffffff-no-rj" alt=""> </div>
     <div class="text-center mt-4 name"> Crear Incidencia </div>
     <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="userName" id="userName" placeholder="Titulo"> </div>
-        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="Descripcion" id="Descripcion" placeholder="Descripcion"> </div> 
-        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="Aula" id="Aula" placeholder="Aula"> </div> <button class="btn mt-3">Crear Incidencia</button>
-        
+        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="Titulo" id="Titulo" placeholder="Titulo" #incidenciaTitulo> </div>
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion" #incidenciaDescripcion> </div> 
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="email" name="Correo" id="Correo" placeholder="Correo" #incidenciaCorreo></div>
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="text" name="Aula" id="Aula" placeholder="Aula" #incidenciaAula></div>
+
+        <!--<button class="btn mt-3" (click)="mostrar(incidenciaAula.value)";></button>-->
     </form>
-    
+
+    <button class="btn mt-3" (click)="add(incidenciaTitulo.value, incidenciaDescripcion.value, incidenciaCorreo.value, incidenciaAula.value); incidenciaTitulo.value=''; incidenciaAula.value='';incidenciaDescripcion.value=''; incidenciaCorreo.value=''; ">Crear Incidencia</button>
+
 </div>
   
-<router-outlet></router-outlet>

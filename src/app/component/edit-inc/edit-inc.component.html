@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <div class="logo"> <img src="https://yt3.ggpht.com/ytc/AKedOLSvHN_I9xdV6ReqLRWnqgeP-pXF2qOm__gBD98h=s176-c-k-c0x00ffffff-no-rj" alt=""> </div>
+    <div class="text-center mt-4 name"> Editar Incidencia </div>
+
+    <form [formGroup]="signupForm" class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="titulo" type="text" name="titulo" id="titulo" placeholder="Titulo" [(ngModel)]="incidencia.titulo" #incTitulo> </div>
+        
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input formControlName="descripcion" type="text" name="descripcion" id="descripcion" placeholder="descripcion" [(ngModel)]="incidencia.descripcion" #incDescripcion> </div> 
+
+       <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="aula" type="string" name="aula" id="aula" placeholder="aula" [(ngModel)]="incidencia.aula" #incAula> </div>
+
+       <div class="text-danger text-center" *ngIf="errorMsg !== '' "><span>{{errorMsg}}</span></div>
+        <!--<div *ngIf="aula.length "><select class="form-select form-select-sm" aria-label=".form-select-sm example"#incAula>
+          <option  selected>Aulas</option>
+          <option *ngFor="let aulas of aula" value={{aulas.numero_aula}}  >{{aulas.numero_aula}}</option>
+          
+        </select></div>-->
+
+        <!--<div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="estado" type="text" name="estado" id="estado" placeholder="estado" [(ngModel)]="incidencia.estado" #incEstado> </div>-->
+        <div><select class="form-select form-select-sm" aria-label=".form-select-sm example" #incEstado>
+            <label>Qué estado tiene la Incidencia</label>
+            <option value="Nuevo">Nuevo</option>
+            <option value="Resuelto">Resuelto</option>
+            <option value="NuevaIn">Derivado a una nueva incidencia</option>
+          </select></div>
+
+        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="correo" type="email" name="correo" id="correo" placeholder="correo" [(ngModel)]="incidencia.correo" #incCorreo> </div>
+
+        <!--<div class="form-field d-flex align-items-center"> <span class="far fa-user"></span><label>S/N</label> <input formControlName="cerrar" type="email" name="correo" id="correo" placeholder="Cerrar incidencia"  #incCerrar> </div>-->
+
+        <!--<div><select class="form-select form-select-sm" aria-label=".form-select-sm example" #incCerrar>
+            <option selected>¿Quieres cerrar la incidencia?</option>
+            <option value="S">Cerrar Incidencia</option>
+            <option value="N">No cerrar incidencia</option>
+          </select></div>-->
+        
+    </form>
+
+    <button  class="btn mt-3" (click)="update(incTitulo.value, incDescripcion.value,incAula.value,  incEstado.value, incCorreo.value)">Editar</button>
+    
+    
+</div>
+  

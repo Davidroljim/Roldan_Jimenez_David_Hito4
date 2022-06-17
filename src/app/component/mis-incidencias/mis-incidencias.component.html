@@ -1,39 +1,39 @@
 <table class="table table-borderless">
-    <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">First</th>
-    <th scope="col">Last</th>
-    <th scope="col">Handle</th>
-  </tr>
+  <thead>
+<tr>
+  <th scope="col"></th>
+  <th scope="col">ID</th>
+  <th scope="col">Titulo</th>
+  <th scope="col">Descripción</th>
+  <th scope="col">Aula</th>
+  <th scope="col">Fecha Creacion</th>
+  <th scope="col">Fecha Mod</th>
+  <th scope="col">Fecha Cierre</th>
+  <th scope="col">Estado</th>
+  <th scope="col">Correo</th>
+  <th scope="col">Comentarios</th>
+  <th></th>
+</tr>
 </thead>
-<tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-    <td ><button type="button" class="botonMsg btn"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
-      <td ><button type="button" class="botonDel btn"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
-    
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    <td ><button type="button" class="botonMsg btn"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
-      <td ><button type="button" class="botonDel btn"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
-    
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td colspan="2">Larry the Bird</td>
-    <td>@twitter</td>
-    <td ><button type="button" class="botonMsg btn"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
-      <td ><button type="button" class="botonDel btn"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
-    
-  </tr>
+<tbody *ngIf="incidencia.length">
+<tr *ngFor="let incidencias of incidencia">
+  <td ><button type="button" class="boton btn"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
+
+  <td>{{incidencias.id}}</td>
+  <td>{{incidencias.titulo}}</td>
+  <td>{{incidencias.descripcion}}</td>
+  <td>{{incidencias.aula}}</td>
+  <td>{{incidencias.created_at}}</td>
+  <td>{{incidencias.updated_at}}</td>
+  <td>{{incidencias.fcierre}}</td>
+  <td>{{incidencias.estado}}</td>
+  <td>{{incidencias.correo}}</td>
+  <td>{{incidencias.comentarios}}</td>
+  <td ><button type="button" class="botonMsg btn" ><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
+  <td ><button type="button" class="botonDel btn" (click)="deleteIncidencia(incidencias.id)"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
+
+</tr>
 </tbody>
+
 
 </table>

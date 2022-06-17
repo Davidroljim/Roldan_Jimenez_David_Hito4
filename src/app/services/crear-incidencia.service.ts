@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MisIncidenciasService {
+export class CrearIncidenciaService {
   url:string = 'http://localhost:8000';
 
   constructor(private http: HttpClient) { }
@@ -15,14 +15,8 @@ export class MisIncidenciasService {
       'Content-Type': 'application/json'
     })
   };
-
-  listMisIncidencias(){
-    
-    return this.http.get<any>(this.url+'/api/incidencias');
-  }
-
-  deleteIncidencia(id: any): Observable<any>{
-    return this.http.delete<any>(this.url+'/api/incidencias/'+id, this.httpOptions);
-    
+  addIncidencia(incidencia:any): Observable<any>{
+    console.log("hola asdfa");
+    return this.http.post<any>(this.url+'/api/incidencias',incidencia,this.httpOptions);
   }
 }

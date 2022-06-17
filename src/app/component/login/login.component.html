@@ -1,11 +1,16 @@
 <div class="wrapper">
     <div class="logo"> <img src="https://yt3.ggpht.com/ytc/AKedOLSvHN_I9xdV6ReqLRWnqgeP-pXF2qOm__gBD98h=s176-c-k-c0x00ffffff-no-rj" alt=""> </div>
     <div class="text-center mt-4 name"> Iniciar Sesión </div>
-    <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="userName" id="userName" placeholder="Usuario"> </div>
-        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="pwd" placeholder="Contraseña"> </div> <button class="btn mt-3">Iniciar Sesión</button>
+
+    <form [formGroup]="signupForm" class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="email" type="email" name="usuario" id="usuario" placeholder="Usuario" #usuario> </div>
+        
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input formControlName="contrasenya" type="password" name="contrasenya" id="contrasenya" placeholder="Contraseña" #contrasenya> </div> 
+        
     </form>
-    <div class="text-center fs-6"> <a href="#">¿Olvidaste tu contraseña?</a> o <a href="localhost/registrar" [routerLink]="['registrar']">Registrate</a> </div>
+
+    <button [disabled]="signupForm.invalid" class="btn mt-3" (click)="add(usuario.value, contrasenya.value); usuario.value=''; contrasenya.value=''; ">Iniciar Sesión</button>
+    
+    <div class="text-center fs-6"> <a href="#">¿Olvidaste tu contraseña?</a> o <a href="localhost/registrar" >Registrar</a> </div>
 </div>
   
-<router-outlet></router-outlet>

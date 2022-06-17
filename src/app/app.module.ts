@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
@@ -10,6 +11,11 @@ import { RegistrarComponent } from './component/registrar/registrar.component';
 import { AdministrarIncidenciasComponent } from './component/administrar-incidencias/administrar-incidencias.component';
 import { AdministrarUsuariosComponent } from './component/administrar-usuarios/administrar-usuarios.component';
 import { CrearIncidenciaComponent } from './component/crear-incidencia/crear-incidencia.component';
+import { AulaComponent } from './component/aula/aula.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditIncComponent } from './component/edit-inc/edit-inc.component';
+import { EditUserComponent } from './component/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -22,11 +28,17 @@ import { CrearIncidenciaComponent } from './component/crear-incidencia/crear-inc
     AdministrarIncidenciasComponent,
     AdministrarUsuariosComponent,
     CrearIncidenciaComponent,
+    AulaComponent,
+    EditIncComponent,
+    EditUserComponent,
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,43 +1,30 @@
 <table class="table table-borderless">
     <thead>
   <tr>
+    
+    <th scope="col">ID</th>
+    <th scope="col">Correo</th>
+    <th scope="col">Contraseña</th>
+    <th scope="col">Validar</th>
+    <th scope="col">Tipo</th>
     <th scope="col"></th>
-    <th scope="col">#</th>
-    <th scope="col">First</th>
-    <th scope="col">Last</th>
-    <th scope="col">Handle</th>
-    <th></th>
+    <th scope="col"></th>
   </tr>
 </thead>
-<tbody>
-  <tr>
-      <td ><button type="button" class="boton btn"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
-    <th >1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-    
-    <td ><button type="button" class="botonDel btn"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
 
-  </tr>
-  <tr>    
-      <td ><button type="button" class="boton btn"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-    
-    <td ><button type="button" class="botonDel btn"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
 
-  </tr>
-  <tr>
-      <td ><button type="button" class="boton btn"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
-    <th scope="row">3</th>
-    <td colspan="2">Larry the Bird</td>
-    <td>@twitter</td>
+<tbody *ngIf="usuario.length">
+  <tr *ngFor="let usuarios of usuario">
     
-    <td ><button type="button" class="botonDel btn"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
-      
+    <td>{{usuarios.id}}</td>  
+    <td>{{usuarios.correo}}</td>
+    <td>{{usuarios.contrasenya}}</td>
+    <td>{{usuarios.validar}}</td>
+    <td>{{usuarios.tipo}}</td>
+    <td ><button type="button" class="botonDel btn" (click)="deleteUser(usuarios.id)"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
+    <td ><button type="button" class="boton btn" routerLink="/editUser/{{usuarios.id}} "><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
+    
+    
   </tr>
 </tbody>
 

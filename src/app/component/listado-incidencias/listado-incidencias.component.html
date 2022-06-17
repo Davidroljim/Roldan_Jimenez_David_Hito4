@@ -1,29 +1,32 @@
 <table class="table table-borderless">
       <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Id</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Aula</th>
+      <th scope="col">Fecha Creacion</th>
+      <th scope="col">Fecha Mod</th>
+      <th scope="col">Fecha Cierre</th>
+
+      <th scope="col">Estado</th>
+      <th scope="col">Correo</th>
+      <th scope="col">Comentarios</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+  <tbody *ngIf="incidencia.length">
+    <tr *ngFor="let incidencias of incidencia">
+      <td>{{incidencias.id}}</td>
+      <td>{{incidencias.titulo}}</td>
+      <td>{{incidencias.descripcion}}</td>
+      <td>{{incidencias.aula}}</td>
+      <td>{{incidencias.created_at}}</td>
+      <td>{{incidencias.updated_at}}</td>
+      <td>{{incidencias.fcierre}}</td>
+      <td>{{incidencias.estado}}</td>
+      <td>{{incidencias.correo}}</td>
+      <td>{{incidencias.comentarios}}</td>
+      
     </tr>
   </tbody>
 
