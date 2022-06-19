@@ -16,7 +16,7 @@ import { AulaComponent } from './component/aula/aula.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditIncComponent } from './component/edit-inc/edit-inc.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { EditUserComponent } from './component/edit-user/edit-user.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

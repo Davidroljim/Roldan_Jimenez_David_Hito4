@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { RegistrarService } from 'src/app/services/registrar.service';
+import { LoginService } from 'src/app/services/login.service';
+
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +14,7 @@ import { RegistrarService } from 'src/app/services/registrar.service';
 })
 export class LoginComponent implements OnInit {
 
-
+aula :any;
   signupForm: FormGroup
 
   validarEmail: any = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -24,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   contactForm: FormGroup;
 
-  constructor(private _builder: FormBuilder,private registrarService: RegistrarService) {
+  constructor(private _builder: FormBuilder,private registrarService: RegistrarService, private loginService: LoginService, private cookie:CookieService) {
 
     this.signupForm = this._builder.group({
       email: ['',Validators.compose([ Validators.required, Validators.pattern(this.validarEmail)])],
@@ -37,6 +41,11 @@ export class LoginComponent implements OnInit {
   usuario :any;
   user:any;
   ngOnInit(): void {
+    this.loginService.listUsuarios().subscribe({
+      next: (aulas) => {
+        this.aula = aulas;
+      }});
+      
   }
 
   mostrarusuario(){
@@ -46,25 +55,18 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  
+  comparar(usuario:string, contrasenya:string){
+    for (let index = 0; index < this.aula.length; index++) {
+             
+      if (usuario===this.aula[index].correo && contrasenya===this.aula[index].contrasenya) {
+        this.cookie.set('email', usuario);
+        this.cookie.set('tipo', this.aula[index].tipo);
+        this.cookie.set('validar', this.aula[index].validar);
+        console.log(this.cookie.get('email'));
+      }
 
-  add(usuario:string, contrasenya:string ){
-    //if (this.contactForm.valid) {
-      console.log(usuario);
-    this.user ={
-      "correo": usuario,
-      "contrasenya": contrasenya,
-      "updated_at": null ,
-      "created_at":null ,
-      
-  };
-    console.log(this.user);
-    this.registrarService.addUser(this.user as any).subscribe(users=>{
-        this.user=users;
-    });
-   // }else{
-      console.log('No valido');
-   // }
-    
+    }
   }
+
+
 }

@@ -9,7 +9,7 @@
         
     </form>
 
-    <button [disabled]="signupForm.invalid" class="btn mt-3" (click)="add(usuario.value, contrasenya.value); usuario.value=''; contrasenya.value=''; ">Iniciar Sesión</button>
+    <button   [disabled]="signupForm.invalid" class="btn mt-3" (click)="comparar(usuario.value, contrasenya.value); usuario.value=''; contrasenya.value=''; "[routerLink]="['listado']">Iniciar Sesión</button>
     
     <div class="text-center fs-6"> <a href="#">¿Olvidaste tu contraseña?</a> o <a href="localhost/registrar" >Registrar</a> </div>
 </div>

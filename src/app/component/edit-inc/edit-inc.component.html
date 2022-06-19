@@ -17,8 +17,9 @@
         </select></div>-->
 
         <!--<div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="estado" type="text" name="estado" id="estado" placeholder="estado" [(ngModel)]="incidencia.estado" #incEstado> </div>-->
-        <div><select class="form-select form-select-sm" aria-label=".form-select-sm example" #incEstado>
-            <label>Qué estado tiene la Incidencia</label>
+        <p>Qué estado tiene la Incidencia:</p>
+        <div><select class="select form-select form-select-sm" aria-label=".form-select-sm example" #incEstado>
+            
             <option value="Nuevo">Nuevo</option>
             <option value="Resuelto">Resuelto</option>
             <option value="NuevaIn">Derivado a una nueva incidencia</option>

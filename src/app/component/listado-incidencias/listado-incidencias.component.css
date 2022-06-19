@@ -1,0 +1,8 @@
+.idDiv{
+   
+    width: 100% !important;
+    font-size: 100% !important;
+    overflow-x: scroll !important;
+    scrollbar-width: none !important;
+  }
+  

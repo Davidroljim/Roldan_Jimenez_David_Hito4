@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MisIncidenciasService } from 'src/app/services/mis-incidencias.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -12,12 +13,15 @@ import { Router } from '@angular/router';
 })
 export class MisIncidenciasComponent implements OnInit {
 
-  constructor(private misincidenciaService: MisIncidenciasService, private router: Router) {}
+  constructor(private misincidenciaService: MisIncidenciasService, private router: Router, private cookie:CookieService) {}
  incidencia :any;
  miIncidencia: any;
+ iniciar:any;
  
  ngOnInit(): void {
    this.mostrarIncidencia();
+   this.iniciar = this.cookie.get('tipo');
+   console.log(this.cookie.get('tipo'));
  }
 
  mostrarIncidencia(){

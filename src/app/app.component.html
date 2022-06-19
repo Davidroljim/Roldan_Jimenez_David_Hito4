@@ -4,30 +4,64 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <nav class="navbar navbar-expand-lg navbar-dark ">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['login']">Inicio</a>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div *ngIf="iniciar == 'admin' " class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="navbar-brand"  [routerLink]="['listado']">Listado</a>
-          <a class="navbar-brand"  [routerLink]="['misIncidencias']">Mis Incidencias</a>
+          
           <a class="navbar-brand"  [routerLink]="['adminUser']">Adm Usuarios</a>
           <a class="navbar-brand"  [routerLink]="['adminInc']">Adm Incidencias</a>
-          <a class="navbar-brand"  [routerLink]="['crear']">Crear Incidencia</a>
-          <a class="navbar-brand"  [routerLink]="['registrar']">Registrar</a>
+          
+         
 
         </li>
         
       </ul>
-      
-    </div>
+      <p  class="badge alinear text-center">{{user}}</p>
+    <button (click)="deleteCookie()" type="button" class="btn text-center" style="color:white" aria-label="Cerrar Sesión">Cerrar Sesión</button>
     <p class="h1 text-center" style="color:white"><img class="logo" src="https://iespoligonosur.org/www/wp-content/uploads/2020/07/cropped-IespsurLogov3.png"></p>
+    
+    </div>
+
+    <div *ngIf="iniciar == 'user' " class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="navbar-brand"  [routerLink]="['listado']">Listado</a>
+          <a class="navbar-brand"  [routerLink]="['misIncidencias']">Mis Incidencias</a>
+          
+          <a class="navbar-brand"  [routerLink]="['crear']">Crear Incidencia</a>
+          
+          
+
+        </li>
+        
+      </ul>
+      <p  class="badge alinear text-center">{{user}}</p>
+    <button type="button" class="btn text-center" style="color:white" aria-label="Cerrar Sesión">Cerrar Sesión</button>
+    <p class="h1 text-center" style="color:white"><img class="logo" src="https://iespoligonosur.org/www/wp-content/uploads/2020/07/cropped-IespsurLogov3.png"></p>
+    
+    </div>
+    <div *ngIf="iniciar == '' " class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="navbar-brand" [routerLink]="['login']">Iniciar Sesion</a>
+          <a class="navbar-brand"  [routerLink]="['listado']">Listado</a>
+          <a class="navbar-brand"  [routerLink]="['registrar']">Registrarse</a>
+
+        </li>
+        
+      </ul>
+     <p class="h1 text-center" style="color:white"><img class="logo" src="https://iespoligonosur.org/www/wp-content/uploads/2020/07/cropped-IespsurLogov3.png"></p>
+    
+    </div>
     
 
   </div>
-
+ 
 </nav>
 
 
