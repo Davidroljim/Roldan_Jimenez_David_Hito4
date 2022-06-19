@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrearIncidenciaService } from 'src/app/services/crear-incidencia.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-incidencia',
@@ -8,9 +10,18 @@ import { CrearIncidenciaService } from 'src/app/services/crear-incidencia.servic
 })
 export class CrearIncidenciaComponent implements OnInit {
 
-  constructor(private crearIncService : CrearIncidenciaService) { }
+  constructor(private crearIncService : CrearIncidenciaService, private cookie:CookieService, private router:Router) { }
   incidencia: any;
+  iniciar:any;
+  correo:any;
   ngOnInit(): void {
+
+    this.iniciar = this.cookie.get('tipo');
+    this.correo = this.cookie.get('email');
+    if (this.iniciar!="user") {
+      this.router.navigate(["/"]);
+    }
+
   }
 mostrar(incidenciaAula:string){
   console.log(Number(incidenciaAula));
@@ -24,7 +35,7 @@ mostrar(incidenciaAula:string){
         "fcreacion": null,
         "fmodificacion": null,
         "fcierre": null,
-        "estado": null,
+        "estado": "Nuevo",
         "correo": incidenciaCorreo,
         "comentarios": null,
         "created_at": null,

@@ -21,6 +21,7 @@
         <div><select class="select form-select form-select-sm" aria-label=".form-select-sm example" #incEstado>
             
             <option value="Nuevo">Nuevo</option>
+            <option value="EnProgreso">En Progreso</option>
             <option value="Resuelto">Resuelto</option>
             <option value="NuevaIn">Derivado a una nueva incidencia</option>
           </select></div>
@@ -37,7 +38,7 @@
         
     </form>
 
-    <button  class="btn mt-3" (click)="update(incTitulo.value, incDescripcion.value,incAula.value,  incEstado.value, incCorreo.value)">Editar</button>
+    <button [disabled]="signupForm.invalid"  class="btn mt-3" (click)="update(incTitulo.value, incDescripcion.value,incAula.value,  incEstado.value, incCorreo.value)">Editar</button>
     
     
 </div>

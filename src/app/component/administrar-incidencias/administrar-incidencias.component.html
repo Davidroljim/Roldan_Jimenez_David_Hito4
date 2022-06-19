@@ -30,7 +30,7 @@
       <td>{{incidencias.estado}}</td>
       <td>{{incidencias.correo}}</td>
       <td>{{incidencias.comentarios}}</td>
-      <td ><button type="button" class="botonMsg btn" (click)="fechaCierre(incidencias.id)" ><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
+      <td ><button type="button" class="botonMsg btn" routerLink="/comInc/{{incidencias.id}}"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
       <td ><button type="button" class="botonDel btn" (click)="deleteIncidencia(incidencias.id)"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
 
       

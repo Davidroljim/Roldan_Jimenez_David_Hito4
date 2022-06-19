@@ -18,7 +18,7 @@
 </thead>
 <tbody *ngIf="incidencia.length">
 <tr *ngFor="let incidencias of incidencia">
-  <td ><button type="button" class="boton btn"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
+  <td ><button type="button" class="boton btn" routerLink="/editInc/{{incidencias.id}}"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
 
   <td>{{incidencias.id}}</td>
   <td>{{incidencias.titulo}}</td>
@@ -30,7 +30,7 @@
   <td>{{incidencias.estado}}</td>
   <td>{{incidencias.correo}}</td>
   <td>{{incidencias.comentarios}}</td>
-  <td ><button type="button" class="botonMsg btn" ><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
+  <td ><button type="button" class="botonMsg btn" routerLink="/comInc/{{incidencias.id}}"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="imagen" alt="..."></button></td>
   <td ><button type="button" class="botonDel btn" (click)="deleteIncidencia(incidencias.id)"><img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="imagen" alt="..."></button></td>
 
 </tr>

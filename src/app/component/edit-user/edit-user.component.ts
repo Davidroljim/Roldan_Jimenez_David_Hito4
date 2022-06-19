@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EditUserService } from 'src/app/services/edit-user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-edit-user',
@@ -22,22 +23,18 @@ export class EditUserComponent implements OnInit {
 
   createFormGroup(){
     return new FormGroup({
-      usuario: new FormControl('',[Validators.required, Validators.pattern(this.validarEmail)]),
-      contrasenya: new FormControl('', [Validators.required]),
-      validar: new FormControl('', [Validators.required]),
-      tipo: new FormControl('', [Validators.required])
+      email: new FormControl('',[Validators.required, Validators.pattern(this.validarEmail)]),
+      contrasenya: new FormControl('', [Validators.required])
     });
   }
 
   contactForm: FormGroup;
-
-  constructor(private route: ActivatedRoute, private router: Router, private userService: EditUserService, private _builder: FormBuilder,private editService: EditUserService) {
+  iniciar:any;
+  constructor(private route: ActivatedRoute, private router: Router, private userService: EditUserService, private _builder: FormBuilder,private editService: EditUserService,   private cookie:CookieService) {
 
     this.signupForm = this._builder.group({
       email: ['',Validators.compose([ Validators.required, Validators.pattern(this.validarEmail)])],
-      contrasenya: ['',Validators.compose([ Validators.required])],
-      validar: ['',Validators.compose([ Validators.required])],
-      tipo: ['',Validators.compose([ Validators.required])]
+      contrasenya: ['',Validators.compose([ Validators.required])]
     })
 
     this.contactForm = this.createFormGroup();
@@ -46,6 +43,12 @@ export class EditUserComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    this.iniciar = this.cookie.get('tipo');
+    if (this.iniciar!="admin") {
+      this.router.navigate(["/"]);
+    }
+
     const routeParams =this.route.snapshot.paramMap;
     this.userId = Number(routeParams.get('userId'));
     console.log(this.userId);

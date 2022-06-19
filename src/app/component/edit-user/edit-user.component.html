@@ -7,10 +7,25 @@
         
         <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input formControlName="contrasenya" type="password" name="contrasenya" id="contrasenya" placeholder="Contraseña" [(ngModel)]="usuario1.contrasenya" #userContrasenya> </div> 
 
-        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="validar" type="text" name="validar" id="validar" placeholder="Validar" [(ngModel)]="usuario1.validar" #userValidar> </div>
+        <!--<div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="validar" type="text" name="validar" id="validar" placeholder="Validar" [(ngModel)]="usuario1.validar" #userValidar> </div>-->
 
-        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="tipo" type="text" name="tipo" id="tipo" placeholder="Tipo" [(ngModel)]="usuario1.tipo" #userTipo> </div>
+        <p>Validar Usuario:</p>
+        <div><select class="select form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="usuario1.validar" #userValidar>
+            
+            <option value="Valido">Valido</option>
+            <option value="NoValido">NoValido</option>
+           
+          </select></div>
 
+        <!--<div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input formControlName="tipo" type="text" name="tipo" id="tipo" placeholder="Tipo" [(ngModel)]="usuario1.tipo" #userTipo> </div>-->
+
+        <p>Tipo de Usuario:</p>
+        <div><select class="select form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="usuario1.tipo" #userTipo>
+            
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+           
+          </select></div>
         
     </form>
 

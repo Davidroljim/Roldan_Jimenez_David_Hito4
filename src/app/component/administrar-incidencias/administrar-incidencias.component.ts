@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListadoIncidenciasService } from 'src/app/services/listado-incidencias.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -10,14 +11,19 @@ import { Router } from '@angular/router';
 })
 export class AdministrarIncidenciasComponent implements OnInit {
 
-  constructor(private incidenciaService: ListadoIncidenciasService, private router: Router) {
+  constructor(private incidenciaService: ListadoIncidenciasService, private router: Router,  private cookie:CookieService) {
 
    }
   incidencia :any;
-  
+  iniciar:any;
   ngOnInit(): void {
+    this.iniciar = this.cookie.get('tipo');
+    if (this.iniciar!="admin") {
+      this.router.navigate(["/"]);
+    }
     this.mostrarIncidencia();
     //this.fechaCierre();
+
   }
 
   mostrarIncidencia(){

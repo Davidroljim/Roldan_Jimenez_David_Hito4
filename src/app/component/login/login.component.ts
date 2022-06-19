@@ -5,6 +5,7 @@ import { RegistrarService } from 'src/app/services/registrar.service';
 import { LoginService } from 'src/app/services/login.service';
 
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,7 @@ aula :any;
 
   contactForm: FormGroup;
 
-  constructor(private _builder: FormBuilder,private registrarService: RegistrarService, private loginService: LoginService, private cookie:CookieService) {
+  constructor(private _builder: FormBuilder,private registrarService: RegistrarService, private loginService: LoginService, private router: Router, private cookie:CookieService) {
 
     this.signupForm = this._builder.group({
       email: ['',Validators.compose([ Validators.required, Validators.pattern(this.validarEmail)])],
@@ -38,9 +39,22 @@ aula :any;
     this.contactForm = this.createFormGroup();
 
    }
+   errorUser:any;
+   bolUser= "false";
+
+   errorMsg:any;
+   bolInc="true";
+
+   iniciar:any;
   usuario :any;
   user:any;
   ngOnInit(): void {
+    
+    this.iniciar = this.cookie.get('tipo');
+    if (this.iniciar!="") {
+      this.router.navigate(["/listado"]);
+    }
+    
     this.loginService.listUsuarios().subscribe({
       next: (aulas) => {
         this.aula = aulas;
@@ -58,15 +72,41 @@ aula :any;
   comparar(usuario:string, contrasenya:string){
     for (let index = 0; index < this.aula.length; index++) {
              
-      if (usuario===this.aula[index].correo && contrasenya===this.aula[index].contrasenya) {
-        this.cookie.set('email', usuario);
+      if (usuario===this.aula[index].correo && contrasenya===this.aula[index].contrasenya ) {
+        this.bolUser="true";
+
+        if (this.aula[index].validar==="valido") {
+          this.cookie.set('email', usuario);
         this.cookie.set('tipo', this.aula[index].tipo);
         this.cookie.set('validar', this.aula[index].validar);
         console.log(this.cookie.get('email'));
+        this.errorMsg="";
+        this.refresh();
+        }else{
+          
+          this.bolInc="false";
+        }
+        
+        
       }
+      
 
     }
-  }
 
+    if (this.bolInc=="true") {
+      this.errorMsg="";
+    }else{
+      this.errorMsg="Este usuario aún no ha sido validado por el administrador";
+    
+    }
+
+    if (this.bolUser=="true") {
+      this.errorUser="";
+    }else{
+      this.errorUser="Usuario o contraseña incorrecto";
+    
+    }
+  }
+refresh(): void { window.location.reload(); }
 
 }

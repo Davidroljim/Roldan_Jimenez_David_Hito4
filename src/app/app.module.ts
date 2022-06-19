@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditIncComponent } from './component/edit-inc/edit-inc.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ComentariosComponent } from './component/comentarios/comentarios.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { CookieService } from 'ngx-cookie-service';
     AulaComponent,
     EditIncComponent,
     EditUserComponent,
+    ComentariosComponent
     
   ],
   imports: [

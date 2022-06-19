@@ -7,11 +7,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-inc',
-  templateUrl: './edit-inc.component.html',
-  styleUrls: ['./edit-inc.component.css']
+  selector: 'app-comentarios',
+  templateUrl: './comentarios.component.html',
+  styleUrls: ['./comentarios.component.css']
 })
-export class EditIncComponent implements OnInit {
+export class ComentariosComponent implements OnInit {
   errorMsg: string = "";
   aula :any;
   bolInc:string= "false";
@@ -36,11 +36,12 @@ export class EditIncComponent implements OnInit {
   }
 
   contactForm: FormGroup;
+  is_edit=true;
   iniciar:any;
   constructor(private route: ActivatedRoute, private router: Router, private incService: EditIncService, private aulaService: AulaService, private _builder: FormBuilder,private cookie:CookieService) {
 
     this.signupForm = this._builder.group({
-      correo: new FormControl('',[Validators.required]),
+      correo: new FormControl('', [Validators.required]),
       titulo: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required]),
       aula: new FormControl('', [Validators.required])
@@ -72,69 +73,19 @@ export class EditIncComponent implements OnInit {
       }});
   }
 
-  update(incTitulo:string, incDescripcion:string ,incAula:string,  incEstado:string, incCorreo:string){
+  update(comentario:string){
     console.log("llega");
     console.log(this.aula);
 
-    this.incidencia.titulo=incTitulo;
-    this.incidencia.descripcion=incDescripcion;
-    this.incidencia.aula=incAula;
-    this.incidencia.estado=incEstado;
-    this.incidencia.correo=incCorreo;
+    this.incidencia.titulo=this.incidencia.titulo;
+    this.incidencia.descripcion=this.incidencia.descripcion;
+    this.incidencia.aula= this.incidencia.aula;
+    this.incidencia.estado=this.incidencia.estado;
+    this.incidencia.comentarios=comentario;
 
-
-    if (incEstado==="Resuelto"|| incEstado==="NuevaIn") {
-      var dateDay = new Date();
-    var fecha = dateDay.getFullYear() + '-' + ( dateDay.getMonth() + 1 ) + '-' + dateDay.getDate();
-      this.incidencia.fcierre=fecha;
-    }else{
-      this.incidencia.fcierre=null;
-    }
-
-
-    // this.incidencia = this.aulaService.listAula().subscribe({
-    //   next: (aulas) => {
-    //     this.aula = aulas;
-    //   },
-    //   error: (err) => {
-    //    
-    //   },
-    //   complete: ()=> {
-        
-    //   }
-    // })
-    
-    for (let index = 0; index < this.aula.length; index++) {
-             
-      if (incAula===this.aula[index].numero_aula) {
-        console.log("bien");
-        this.incService.update(this.incId, this.incidencia).subscribe(res=>{
-          
-        });
-        console.log("update");
-            this.router.navigateByUrl('/adminInc');
-            this.errorMsg="";
-            this.bolInc="true";
-      }
-
-    }
-
-    if (this.bolInc=="true") {
-      this.errorMsg="";
-    }else{
-      this.errorMsg="El aula "+incAula+" no existe en el Instituto";
-    
-    }
-    
-
+    this.incService.update(this.incId, this.incidencia).subscribe(res=>{
+      this.router.navigateByUrl('/misIncidencias');
+    });
   }
-
-
-  /*mostrarAula(){
-    this.incidencia = this.aulaService.listAula().subscribe(aulas=>{
-      this.aula = aulas;
-
-      
-    })
-  }*/
+    
 }

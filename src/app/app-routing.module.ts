@@ -11,6 +11,7 @@ import { AdministrarUsuariosComponent } from './component/administrar-usuarios/a
 import { CrearIncidenciaComponent } from './component/crear-incidencia/crear-incidencia.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { EditIncComponent } from './component/edit-inc/edit-inc.component';
+import { ComentariosComponent } from './component/comentarios/comentarios.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'registrar', component: RegistrarComponent,},
   {path: 'editUser/:userId', component: EditUserComponent,},
   {path: 'adminInc/:incId', component: AdministrarIncidenciasComponent,},
-  {path: 'editInc/:incId', component: EditIncComponent,}
+  {path: 'editInc/:incId', component: EditIncComponent,},
+  {path: 'comInc/:incId', component: ComentariosComponent,}
 ];
 
 @NgModule({
