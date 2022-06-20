@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrearIncidenciaService } from 'src/app/services/crear-incidencia.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { AulaService} from 'src/app/services/aula.service';
 
 @Component({
   selector: 'app-crear-incidencia',
@@ -10,10 +11,13 @@ import { Router } from '@angular/router';
 })
 export class CrearIncidenciaComponent implements OnInit {
 
-  constructor(private crearIncService : CrearIncidenciaService, private cookie:CookieService, private router:Router) { }
+  constructor(private crearIncService : CrearIncidenciaService, private cookie:CookieService, private router:Router, private aulaService:AulaService) { }
   incidencia: any;
   iniciar:any;
   correo:any;
+  aula:any;
+  errorMsg:any;
+  bolInc:string= "false";
   ngOnInit(): void {
 
     this.iniciar = this.cookie.get('tipo');
@@ -21,6 +25,11 @@ export class CrearIncidenciaComponent implements OnInit {
     if (this.iniciar!="user") {
       this.router.navigate(["/"]);
     }
+
+    this.aulaService.listAula().subscribe({
+      next: (aulas) => {
+        this.aula = aulas;
+      }});
 
   }
 mostrar(incidenciaAula:string){
@@ -42,8 +51,34 @@ mostrar(incidenciaAula:string){
         "updated_at": null
     };
     console.log(this.incidencia);
-    this.crearIncService.addIncidencia(this.incidencia as any).subscribe(incidencias=>{
-        this.incidencia=incidencias;
-    });
+
+    for (let index = 0; index < this.aula.length; index++) {
+             
+      if (incidenciaAula===this.aula[index].numero_aula) {
+        this.crearIncService.addIncidencia(this.incidencia as any).subscribe(incidencias=>{
+          this.incidencia=incidencias;
+      });
+        console.log("create");
+            
+            this.errorMsg="";
+            this.bolInc="true";
+      }
+
+    }
+
+    if (this.bolInc=="true") {
+      this.errorMsg="";
+      this.router.navigateByUrl('/misIncidencias');
+    }else{
+      this.errorMsg="El aula "+incidenciaAula+" no existe en el Instituto";
+    
+    }
+
+    //this.crearIncService.addIncidencia(this.incidencia as any).subscribe(incidencias=>{
+    //    this.incidencia=incidencias;
+    //});
+
+
+
   }
 }

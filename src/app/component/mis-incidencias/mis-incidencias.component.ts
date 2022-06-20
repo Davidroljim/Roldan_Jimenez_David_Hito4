@@ -17,17 +17,30 @@ export class MisIncidenciasComponent implements OnInit {
  incidencia :any;
  miIncidencia: any;
  iniciar:any;
+ email:any;
+ inc:Array<any> = [];
+ 
  
  ngOnInit(): void {
    this.mostrarIncidencia();
    this.iniciar = this.cookie.get('tipo');
+   this.email=this.cookie.get('email');
    console.log(this.cookie.get('tipo'));
  }
 
  mostrarIncidencia(){
    this.incidencia = this.misincidenciaService.listMisIncidencias().subscribe(incidencias=>{
-     this.incidencia = incidencias;
-     console.log(this.incidencia);
+    for (let index = 0; index < incidencias.length; index++) {
+      //const element = incidencias[index];
+      console.log(incidencias[index].correo);
+      if (this.email===incidencias[index].correo) {
+        this.inc.push(incidencias[index]);
+        //console.log("hola",incidencias[index].email);
+      }
+    }
+    
+     
+     //console.log(this.incidencia);
    })
  }
 

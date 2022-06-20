@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 //import { EditUserService } from 'src/app/services/edit-user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-comentarios',
   templateUrl: './comentarios.component.html',
@@ -85,7 +86,9 @@ export class ComentariosComponent implements OnInit {
 
     this.incService.update(this.incId, this.incidencia).subscribe(res=>{
       this.router.navigateByUrl('/misIncidencias');
+
     });
+
   }
     
 }

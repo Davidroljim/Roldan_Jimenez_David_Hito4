@@ -16,16 +16,16 @@
   <th></th>
 </tr>
 </thead>
-<tbody *ngIf="incidencia.length">
-<tr *ngFor="let incidencias of incidencia">
+<tbody *ngIf="inc.length > 0">
+<tr *ngFor="let incidencias of inc">
   <td ><button type="button" class="boton btn" routerLink="/editInc/{{incidencias.id}}"><img src="https://cdn-icons-png.flaticon.com/512/263/263100.png" class="imagen" alt="..."></button></td>
 
   <td>{{incidencias.id}}</td>
   <td>{{incidencias.titulo}}</td>
   <td>{{incidencias.descripcion}}</td>
   <td>{{incidencias.aula}}</td>
-  <td>{{incidencias.created_at}}</td>
-  <td>{{incidencias.updated_at}}</td>
+  <td>{{incidencias.created_at | date:'yyyy-MM-dd'}}</td>
+  <td>{{incidencias.updated_at | date:'yyyy-MM-dd'}}</td>
   <td>{{incidencias.fcierre}}</td>
   <td>{{incidencias.estado}}</td>
   <td>{{incidencias.correo}}</td>
