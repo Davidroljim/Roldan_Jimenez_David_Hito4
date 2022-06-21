@@ -16,13 +16,26 @@ export class AulaService {
 
   enviarMail(email:string, messages:string){
     console.log("Email enviar");
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      this.http.post('https://formspree.io/f/xnqwyney',
-        { name: "david.roldan.jimenez.al@iespoligonosur.org", replyto: email, message: messages },
-        { 'headers': headers }).subscribe(
-          response => {
-            console.log(response);
+    return this.http.post('https://mandrillapp.com/api/1.0/messages/send.json',
+      {
+          key: 'API KEY',
+          message: {
+          html: '<p>Example HTML content</p>',
+          subject: 'example subject',
+          from_email: 'message.from_email@example.com',
+          from_name: 'Example Name',
+          to: [
+            {
+              email: 'recipient.email@example.com',
+              name: 'Recipient Name',
+              type: 'to'
+            }
+          ],
+          headers: {
+            'Reply-To': 'message.reply@example.com'
           }
-        );
+        }
+
+      });
   }
 }
