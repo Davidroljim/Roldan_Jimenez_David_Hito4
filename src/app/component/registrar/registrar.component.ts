@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { RegistrarService } from 'src/app/services/registrar.service';
 
-
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar',
@@ -25,7 +26,7 @@ export class RegistrarComponent implements OnInit {
 
   contactForm: FormGroup;
 
-  constructor(private _builder: FormBuilder,private registrarService: RegistrarService) {
+  constructor(private _builder: FormBuilder,private registrarService: RegistrarService, private router: Router, private cookie:CookieService) {
 
     this.signupForm = this._builder.group({
       email: ['',Validators.compose([ Validators.required, Validators.pattern(this.validarEmail)])],
@@ -35,9 +36,14 @@ export class RegistrarComponent implements OnInit {
     this.contactForm = this.createFormGroup();
 
    }
+   iniciar:any;
   usuario :any;
   user:any;
   ngOnInit(): void {
+    this.iniciar = this.cookie.get('tipo');
+    if (this.iniciar!="") {
+      this.router.navigate(["/listado"]);
+    }
   }
 
   mostrarusuario(){

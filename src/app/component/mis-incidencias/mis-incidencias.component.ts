@@ -26,6 +26,10 @@ export class MisIncidenciasComponent implements OnInit {
    this.iniciar = this.cookie.get('tipo');
    this.email=this.cookie.get('email');
    console.log(this.cookie.get('tipo'));
+   
+    if (this.iniciar!="user") {
+      this.router.navigate(["/listado"]);
+    }
  }
 
  mostrarIncidencia(){

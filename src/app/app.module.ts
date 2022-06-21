@@ -20,6 +20,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ComentariosComponent } from './component/comentarios/comentarios.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import { ComentariosComponent } from './component/comentarios/comentarios.compon
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

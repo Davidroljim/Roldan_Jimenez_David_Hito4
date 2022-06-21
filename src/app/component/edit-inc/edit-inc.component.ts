@@ -53,11 +53,11 @@ export class EditIncComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    /*this.iniciar = this.cookie.get('validar');
+    this.iniciar = this.cookie.get('validar');
     console.log(this.iniciar);
     if (this.iniciar=="") {
       this.router.navigate(["/listado"]);
-    }*/
+    }
 
     const routeParams =this.route.snapshot.paramMap;
     this.incId = Number(routeParams.get('incId'));

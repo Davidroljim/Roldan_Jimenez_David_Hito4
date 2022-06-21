@@ -15,6 +15,12 @@ footer {
   footer div{
     text-align: right;
   }
+  nav{
+    background-color: #86c91a!important;
+  }
+  .nav-link{
+    color: white;
+  }
 
 nav.navbar {
   background-color: #86c91a;

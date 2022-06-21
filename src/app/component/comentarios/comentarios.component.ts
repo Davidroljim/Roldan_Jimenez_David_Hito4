@@ -5,6 +5,7 @@ import { AulaService} from 'src/app/services/aula.service';
 import { CookieService } from 'ngx-cookie-service';
 //import { EditUserService } from 'src/app/services/edit-user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -27,6 +28,8 @@ export class ComentariosComponent implements OnInit {
 
   validarEmail: any = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
+   
+
   createFormGroup(){
     return new FormGroup({
       correo: new FormControl('',[Validators.required, Validators.pattern(this.validarEmail)]),
@@ -39,6 +42,7 @@ export class ComentariosComponent implements OnInit {
   contactForm: FormGroup;
   is_edit=true;
   iniciar:any;
+  email:any;
   constructor(private route: ActivatedRoute, private router: Router, private incService: EditIncService, private aulaService: AulaService, private _builder: FormBuilder,private cookie:CookieService) {
 
     this.signupForm = this._builder.group({
@@ -55,11 +59,12 @@ export class ComentariosComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    /*this.iniciar = this.cookie.get('validar');
+    this.email = this.cookie.get('email');
+    this.iniciar = this.cookie.get('validar');
     console.log(this.iniciar);
     if (this.iniciar=="") {
       this.router.navigate(["/listado"]);
-    }*/
+    }
 
     const routeParams =this.route.snapshot.paramMap;
     this.incId = Number(routeParams.get('incId'));
@@ -85,9 +90,13 @@ export class ComentariosComponent implements OnInit {
     this.incidencia.comentarios=comentario;
 
     this.incService.update(this.incId, this.incidencia).subscribe(res=>{
-      this.router.navigateByUrl('/misIncidencias');
+      this.router.navigateByUrl('/listado');
 
+      this.aulaService.enviarMail(this.email, this.incidencia.comentario);
+      
     });
+
+   
 
   }
     

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrarService } from 'src/app/services/registrar.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-administrar-usuarios',
   templateUrl: './administrar-usuarios.component.html',
@@ -7,11 +9,15 @@ import { RegistrarService } from 'src/app/services/registrar.service';
 })
 export class AdministrarUsuariosComponent implements OnInit {
 
-  constructor(private registrarService: RegistrarService) { }
+  constructor(private registrarService: RegistrarService,  private router: Router, private cookie:CookieService) { }
   usuario :any;
   user: any;
-
+  iniciar:any;
   ngOnInit(): void {
+    this.iniciar = this.cookie.get('tipo');
+    if (this.iniciar!="admin") {
+      this.router.navigate(["/"]);
+    }
     this.mostrarusuario();
   }
 
